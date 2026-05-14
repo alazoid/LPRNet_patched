@@ -54,7 +54,7 @@ def get_parser():
     parser.add_argument('--test_img_dirs', default="~/workspace/testMixLPR", help='the test images path')
     parser.add_argument('--dropout_rate', default=0.5, help='dropout rate.')
     parser.add_argument('--learning_rate', default=0.1, help='base value of learning rate.')
-    parser.add_argument('--lpr_max_len', default=20, help='license plate number max length.')
+    parser.add_argument('--lpr_max_len', default=8, help='license plate number max length.')
     parser.add_argument('--train_batch_size', default=128, help='training batch size.')
     parser.add_argument('--test_batch_size', default=120, help='testing batch size.')
     parser.add_argument('--phase_train', default=True, type=bool, help='train or test phase flag.')
@@ -90,7 +90,7 @@ def collate_fn(batch):
 def train():
     args = get_parser()
 
-    T_length = 20 # args.lpr_max_len
+    T_length = 18 # args.lpr_max_len
     epoch = 0 + args.resume_epoch
     loss_val = 0
 
