@@ -30,14 +30,14 @@ class LPRNet(nn.Module):
             small_basic_block(ch_in=64, ch_out=128),    # *** 4 ***
             nn.BatchNorm2d(num_features=128),
             nn.ReLU(),  # 6
-            nn.MaxPool3d(kernel_size=(1, 3, 3), stride=(2, 1, 1)),
+            nn.MaxPool3d(kernel_size=(1, 3, 3), stride=(2, 1, 2)),
             small_basic_block(ch_in=64, ch_out=256),   # 8
             nn.BatchNorm2d(num_features=256),
             nn.ReLU(),  # 10
             small_basic_block(ch_in=256, ch_out=256),   # *** 11 ***
             nn.BatchNorm2d(num_features=256),   # 12
             nn.ReLU(),
-            nn.MaxPool3d(kernel_size=(1, 3, 3), stride=(4, 1, 1)),  # 14
+            nn.MaxPool3d(kernel_size=(1, 3, 3), stride=(4, 1, 2)),  # 14
             nn.Dropout(dropout_rate),
             nn.Conv2d(in_channels=64, out_channels=256, kernel_size=(1, 4), stride=1),  # 16
             nn.BatchNorm2d(num_features=256),
@@ -79,7 +79,7 @@ class LPRNet(nn.Module):
 
         return logits
 
-def build_lprnet(lpr_max_len=20, phase=False, class_num=66, dropout_rate=0.5):
+def build_lprnet(lpr_max_len=8, phase=False, class_num=66, dropout_rate=0.5):
 
     Net = LPRNet(lpr_max_len, phase, class_num, dropout_rate)
 
